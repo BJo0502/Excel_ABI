@@ -1,0 +1,13 @@
+Option Explicit
+
+Sub Reset_Image_Form()
+
+    Dim iMessage As VbMsgBoxResult
+    
+    iMessage = MsgBox("Do you want to reset this image metadata?", vbYesNo + vbQuestion, "Reset Confirmation")
+    
+    If iMessage = vbNo Then Exit Sub
+    
+    ThisWorkbook.Sheets("Form").Range("R5, T5, R7, R9").Value = ""
+    
+End Sub

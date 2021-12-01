@@ -1,0 +1,8 @@
+
+Dynamic Drop Down List Code: For E
+
+=OFFSET($AE$2,1,MATCH($H$7,$AE$2:$AK$2,0)-1,COUNTA(OFFSET($AE$2,1,MATCH($H$7,$AE$2:$AK$2,0)-1,20)),1)
+
+For C:
+
+=OFFSET($Z$2,1,MATCH($Q$21,$Z$2:$AC$2,0)-1,COUNTA(OFFSET($Z$2,1,MATCH($Q$21,$Z$2:$AC$2,0)-1,20)),1)

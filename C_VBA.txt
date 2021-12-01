@@ -1,0 +1,53 @@
+Option Explicit
+
+Sub Reset_Crates_Form()
+
+    Dim iMessage As VbMsgBoxResult
+    
+    iMessage = MsgBox("Do you want to reset this form?", vbYesNo + vbQuestion, "Reset Confirmation")
+    
+    If iMessage = vbNo Then Exit Sub
+    
+    ThisWorkbook.Sheets("Form").Range("R19, Q21, T21, Q23").Value = ""
+    
+    
+End Sub
+
+Sub Submit_Crates_Details()
+
+    Dim shCrates As Worksheet
+    Dim shForm As Worksheet
+    
+    Dim iCurrentRow As Integer
+    
+    Dim sCrates As String
+    
+    Set shForm = ThisWorkbook.Sheets("Form")
+    
+    Set shCrates = ThisWorkbook.Sheets("Crates")
+    
+    iCurrentRow = shCrates.Range("A" & Application.Rows.Count).End(xlUp).Row + 1
+    
+    With shCrates
+    
+    
+    .Cells(iCurrentRow, 13) = shForm.Range("Q21")
+    .Cells(iCurrentRow, 10) = shForm.Range("R19")
+    .Cells(iCurrentRow, 17) = Format([Now()], "DD-MMM-YYYY HH:MM:SS")
+    .Cells(iCurrentRow, 1) = shForm.Range("R5")
+    .Cells(iCurrentRow, 2) = shForm.Range("T5")
+    .Cells(iCurrentRow, 3) = shForm.Range("R7")
+    .Cells(iCurrentRow, 4) = shForm.Range("R9")
+    .Cells(iCurrentRow, 5) = shForm.Range("R11")
+    .Cells(iCurrentRow, 18) = shForm.Range("T23")
+    .Cells(iCurrentRow, 15) = shForm.Range("T21")
+    .Cells(iCurrentRow, 14) = shForm.Range("Q23")
+    .Cells(iCurrentRow, 16) = shForm.Range("S25")
+    
+    End With
+    
+    shForm.Range("R19, Q21, T21, Q23").Value = ""
+    MsgBox "Data has been submitted successfully!"
+    
+
+End Sub

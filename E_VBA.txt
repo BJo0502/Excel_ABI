@@ -1,0 +1,56 @@
+Option Explicit
+
+Sub Reset_Form()
+
+    Dim iMessage As VbMsgBoxResult
+    
+    iMessage = MsgBox("Do you want to reset this form?", vbYesNo + vbQuestion, "Reset Confirmation")
+    
+    If iMessage = vbNo Then Exit Sub
+    
+    ThisWorkbook.Sheets("Form").Range("H7, H9, H11, H13, H15, H17").Value = ""
+    
+    
+End Sub
+
+Sub Submit_Details()
+
+    Dim shSub As Worksheet
+    Dim shForm As Worksheet
+    
+    Dim iCurrentRow As Integer
+    
+    Dim sSubName As String
+    
+    Set shForm = ThisWorkbook.Sheets("Form")
+    
+    sSubName = shForm.Range("H13").Value
+    
+    Set shSub = ThisWorkbook.Sheets(sSubName)
+    
+    iCurrentRow = shSub.Range("A" & Application.Rows.Count).End(xlUp).Row + 1
+    
+    With shSub
+    
+    
+    .Cells(iCurrentRow, 10) = shForm.Range("H13")
+    .Cells(iCurrentRow, 13) = shForm.Range("H7")
+    .Cells(iCurrentRow, 14) = shForm.Range("H9")
+    .Cells(iCurrentRow, 15) = shForm.Range("H11")
+    .Cells(iCurrentRow, 16) = shForm.Range("H15")
+    .Cells(iCurrentRow, 17) = shForm.Range("H17")
+    .Cells(iCurrentRow, 18) = Format([Now()], "DD-MMM-YYYY HH:MM:SS")
+    .Cells(iCurrentRow, 1) = shForm.Range("R5")
+    .Cells(iCurrentRow, 2) = shForm.Range("T5")
+    .Cells(iCurrentRow, 3) = shForm.Range("R7")
+    .Cells(iCurrentRow, 4) = shForm.Range("R9")
+    .Cells(iCurrentRow, 5) = shForm.Range("R11")
+    .Cells(iCurrentRow, 19) = shForm.Range("D20")
+    
+    End With
+    
+    shForm.Range("H7, H9, H11, H13, H15, H17").Value = ""
+    MsgBox "Data has been submitted successfully!"
+    
+
+End Sub
